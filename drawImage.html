@@ -34,10 +34,11 @@
            * 绘制图像时，一定要确保图片被加载完成
            */
           img.onload = function () {
-            // ctx.drawImage(图片,x,y,width,height,绘制的x,绘制的y,绘制的宽度,绘制的高度)
-            // ctx.drawImage(this,0,0,300,200)
-
-            ctx.drawImage(this,0,0,300,200,150,50,100,50)
+            ctx.beginPath()
+            ctx.arc(400,300,150,0,Math.PI*2)
+            ctx.fill()
+            ctx.clip()
+            ctx.drawImage(this,80,110)
           }
         }
       }
