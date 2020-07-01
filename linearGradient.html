@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas</title>
+    <style type="text/css">
+      body {
+        padding-top: 20px;
+        text-align: center;
+      }
+      canvas {
+        box-shadow: 0 0 10px #333;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body onload="draw()">
+    <canvas id="canvas" width="800" height="600">
+      您的浏览器不支持Canvas，请更新！
+    </canvas>
+
+    <script>
+      function draw() {
+        var canvas = document.getElementById('canvas')
+        if (canvas.getContext) {
+          // 说明当前浏览器支持，在其中写代码。。。
+          var ctx = canvas.getContext('2d') // 相当于画笔, canvas是画布
+
+        /*
+        * 线性渐变
+        * 参数1：起点x1
+        * 参数2：起点y1
+        * 参数3：终点x2
+        * 参数4：终点y2
+        */
+        var lingrad = ctx.createLinearGradient(0,0,0,150)
+
+
+        /*
+        * 参数1：必须是0.0-1.0之间的数值，数值表示颜色所在的相对位置
+        * 参数1：颜色，red,#fff,rgb(255,255,255),rgba(255,255,255,0.5)
+        */
+        lingrad.addColorStop(0,'#cc6677')
+        lingrad.addColorStop(0.5,'#fff')
+        lingrad.addColorStop(0.5,'#c6c776')
+
+          var lingrad2 = ctx.createLinearGradient(0,50,0,90)
+        lingrad2.addColorStop(0.5,'#000')
+        lingrad2.addColorStop(1,'rgba(0,0,0,0)')
+
+        ctx.fillStyle = lingrad
+        ctx.fillRect(10,10,130,130)
+
+
+        ctx.strokeStyle = lingrad2
+        ctx.strokeRect(50,50,50,50)
+        }
+      }
+    </script>
+  </body>
+</html>
