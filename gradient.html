@@ -55,6 +55,34 @@
 
         ctx.strokeStyle = lingrad2
         ctx.strokeRect(50,50,50,50)
+
+
+        /*
+        * 径向渐变
+        * 参数1：x1轴   参数1和2代表第一个圆的圆心
+        * 参数2：y1轴
+        * 参数3：r1半径
+        * 参数4：x2轴   参数4和5代表第二个圆的圆心
+        * 参数5：y2轴
+        * 参数6：r2半径
+        */
+        var radgrad = ctx.createRadialGradient(50,200,10,50,200,30)
+
+        radgrad.addColorStop(0,'#a7d30c')
+        radgrad.addColorStop(0.9,'#019f62')
+        radgrad.addColorStop(1,'rgba(1,159,98,0)')
+
+        var radgrad2 = ctx.createRadialGradient(105,200,20,125,220,50)
+
+        radgrad2.addColorStop(0,'#a7d30c')
+        radgrad2.addColorStop(0.9,'#019f62')
+        radgrad2.addColorStop(1,'rgba(1,159,98,0)')
+
+        ctx.fillStyle = radgrad
+        ctx.fillRect(0,100,300,300)
+        
+        ctx.fillStyle = radgrad2
+        ctx.fillRect(0,100,300,300)
         }
       }
     </script>
