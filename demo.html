@@ -45,11 +45,11 @@
           ctx.fillStyle = 'rgba(0, 0, 200, 0.5)'
           ctx.strokeRect(80, 80, 350, 300)
 
+
           /*
           * 清除指定矩形区域
           * clearRect(x, y, width, height)
           */
-
           ctx.fillStyle = 'rgb(0, 0, 0)'
           ctx.fillRect(100,450,100,100)
           ctx.clearRect(120,470,60,60)
@@ -59,9 +59,46 @@
           /*
           * 以上三种方法都是用于绘制矩形
           * 如何通过路径绘制？
+          * 图形的基本元素就是路径
+          * 1.创建起始点
+          * 2.使用画图命令，画出路径
+          * 3.闭合路径
+          * 4.通过描边或填充绘制图形
           */
-          
+          // 绘制三角形
+          ctx.beginPath()
+          // 起始点
+          ctx.moveTo(600,300)
+          // 二点
+          ctx.lineTo(700,350)
+          // 三点
+          ctx.lineTo(700,250)
+          // 填充
+          // ctx.fill()
 
+          // 连线，描边
+          // ctx.lineTo(600,300)
+          // ctx.stroke()
+
+          // 闭合
+          ctx.closePath()
+          ctx.stroke()
+
+
+          // 绘制两个三角形
+          // 填充三角形
+          ctx.beginPath()
+          ctx.moveTo(500,80)
+          ctx.lineTo(605,80)
+          ctx.lineTo(500,185)
+          ctx.fill()
+          // 描边三角形
+          ctx.beginPath()
+          ctx.moveTo(620,100)
+          ctx.lineTo(620,205)
+          ctx.lineTo(515,205)
+          ctx.closePath()
+          ctx.stroke()
         }
       }
     </script>
