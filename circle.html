@@ -77,6 +77,18 @@
           // endAngel = Math.PI*2
           // ctx.arc(x,y,radius,startAngel,endAngel)
           // ctx.stroke()
+
+
+          // 笑脸
+          ctx.beginPath()
+          ctx.arc(100,400,50,0,Math.PI*2,true)
+          ctx.moveTo(135,400)
+          ctx.arc(100,400,35,0,Math.PI,false)
+          ctx.moveTo(90,390)
+          ctx.arc(85,390,5,0,Math.PI*2,true)
+          ctx.moveTo(120,390)
+          ctx.arc(115,390,5,0,Math.PI*2,true)
+          ctx.stroke()
         }
       }
     </script>
