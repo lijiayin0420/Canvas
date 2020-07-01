@@ -21,7 +21,6 @@
     </canvas>
 
     <script>
-
       function draw() {
         var canvas = document.getElementById('canvas')
         if (canvas.getContext) {
@@ -29,20 +28,55 @@
           var ctx = canvas.getContext('2d') // 相当于画笔, canvas是画布
 
           /*
-          * 圆
-          * 圆心，半径，开始角度，结束角度，顺时针/逆时针
-          */
-          ctx.strokeStyle = 'orange'
-          ctx.lineWidth = 10 // 画笔宽度
+           * 圆
+           * 圆心，半径，开始角度，结束角度，顺时针/逆时针
+           */
+          //   ctx.strokeStyle = 'orange'
+          //   ctx.lineWidth = 10 // 画笔宽度
 
-          // ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise=false)
-        //   ctx.arc(400, 300, 150, 0, Math.PI, false)
-        //   ctx.arc(400, 300, 150, 0, Math.PI/2, false)
-        //   ctx.arc(400, 300, 150, 0, Math.PI*2, false) // 完整的圆
-        //   ctx.arc(400, 300, 150, 0, Math.PI*1.5, false) // 4分之3的圆
-          ctx.arc(400, 300, 150, -Math.PI/2, Math.PI)
-          ctx.stroke()
+          // ctx.arc(x, y, radius, startAngel, endAngel, anticlockwise=false)
+          //   ctx.arc(400, 300, 150, 0, Math.PI, false)
+          //   ctx.arc(400, 300, 150, 0, Math.PI/2, false)
+          //   ctx.arc(400, 300, 150, 0, Math.PI*2, false) // 完整的圆
+          //   ctx.arc(400, 300, 150, 0, Math.PI*1.5, false) // 4分之3的圆
+          //   ctx.arc(400, 300, 150, -Math.PI/2, Math.PI)
+          //   ctx.stroke()
 
+          for (var i = 0; i < 4; i++) {
+            for (var j = 0; j < 3; j++) {
+              ctx.beginPath()
+              var x = 25 + j * 50
+              var y = 25 + i * 50
+              var radius = 20
+              var startAngel = 0
+              var endAngel = Math.PI + (Math.PI * j) / 2
+              var anticlockwise = i % 2 === 0 ? false : true
+
+              ctx.arc(x, y, radius, startAngel, endAngel, anticlockwise)
+
+              if (i < 2) {
+                ctx.stroke()
+              } else {
+                ctx.fill()
+              }
+            }
+          }
+
+          // var x = 25
+          // var y = 25
+          // var radius = 20
+          // var startAngel = 0
+          // var endAngel = Math.PI
+
+          // ctx.arc(x,y,radius,startAngel,endAngel)
+          // ctx.arc(x,y,radius,startAngel,endAngel, true)
+
+          // endAngel = Math.PI + Math.PI/2
+          // ctx.arc(x,y,radius,startAngel,endAngel)
+
+          // endAngel = Math.PI*2
+          // ctx.arc(x,y,radius,startAngel,endAngel)
+          // ctx.stroke()
         }
       }
     </script>
