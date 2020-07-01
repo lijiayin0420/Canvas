@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas</title>
+    <style type="text/css">
+      body {
+        padding-top: 20px;
+        text-align: center;
+      }
+      canvas {
+        box-shadow: 0 0 10px #333;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body onload="draw()">
+    <canvas id="canvas" width="800" height="600">
+      您的浏览器不支持Canvas，请更新！
+    </canvas>
+
+    <script>
+      function draw() {
+        var canvas = document.getElementById('canvas')
+        if (canvas.getContext) {
+          // 说明当前浏览器支持，在其中写代码。。。
+          var ctx = canvas.getContext('2d') // 相当于画笔, canvas是画布
+
+          // 填充矩形
+          // 添加样式
+          ctx.fillStyle = 'rgb(200, 0, 0)'
+          // 画矩形，x, y, width, height
+          ctx.fillRect(10, 10, 350, 300)
+
+          ctx.fillStyle = 'rgba(0, 0, 200, 0.5)'
+          ctx.fillRect(30, 30, 350, 300)
+
+
+          // 描边矩形
+          ctx.strokeStyle = 'rgb(200, 0, 0)'
+          ctx.strokeRect(60, 60, 350, 300)
+
+          ctx.fillStyle = 'rgba(0, 0, 200, 0.5)'
+          ctx.strokeRect(80, 80, 350, 300)
+        }
+      }
+    </script>
+  </body>
+</html>
