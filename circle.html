@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas</title>
+    <style type="text/css">
+      body {
+        padding-top: 20px;
+        text-align: center;
+      }
+      canvas {
+        box-shadow: 0 0 10px #333;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body onload="draw()">
+    <canvas id="canvas" width="800" height="600">
+      您的浏览器不支持Canvas，请更新！
+    </canvas>
+
+    <script>
+
+      function draw() {
+        var canvas = document.getElementById('canvas')
+        if (canvas.getContext) {
+          // 说明当前浏览器支持，在其中写代码。。。
+          var ctx = canvas.getContext('2d') // 相当于画笔, canvas是画布
+
+          /*
+          * 圆
+          * 圆心，半径，开始角度，结束角度，顺时针/逆时针
+          */
+          ctx.strokeStyle = 'orange'
+          ctx.lineWidth = 10 // 画笔宽度
+
+          // ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise=false)
+        //   ctx.arc(400, 300, 150, 0, Math.PI, false)
+        //   ctx.arc(400, 300, 150, 0, Math.PI/2, false)
+        //   ctx.arc(400, 300, 150, 0, Math.PI*2, false) // 完整的圆
+        //   ctx.arc(400, 300, 150, 0, Math.PI*1.5, false) // 4分之3的圆
+          ctx.arc(400, 300, 150, -Math.PI/2, Math.PI)
+          ctx.stroke()
+
+        }
+      }
+    </script>
+  </body>
+</html>
