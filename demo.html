@@ -21,6 +21,7 @@
     </canvas>
 
     <script>
+
       function draw() {
         var canvas = document.getElementById('canvas')
         if (canvas.getContext) {
@@ -43,6 +44,24 @@
 
           ctx.fillStyle = 'rgba(0, 0, 200, 0.5)'
           ctx.strokeRect(80, 80, 350, 300)
+
+          /*
+          * 清除指定矩形区域
+          * clearRect(x, y, width, height)
+          */
+
+          ctx.fillStyle = 'rgb(0, 0, 0)'
+          ctx.fillRect(100,450,100,100)
+          ctx.clearRect(120,470,60,60)
+          ctx.strokeRect(125,475,50,50)
+
+
+          /*
+          * 以上三种方法都是用于绘制矩形
+          * 如何通过路径绘制？
+          */
+          
+
         }
       }
     </script>
