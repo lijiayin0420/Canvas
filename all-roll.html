@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas</title>
+    <style type="text/css">
+      body,
+      html {
+        margin: 0;
+      }
+      canvas {
+        border: solid 1px red;
+      }
+    </style>
+  </head>
+  <body onload="draw()">
+    <canvas id="canvas" width="750" height="500">
+      您的浏览器不支持Canvas，请更新！
+    </canvas>
+
+    <script>
+      function draw() {
+        var canvas = document.getElementById('canvas')
+        if (canvas.getContext) {
+          // 说明当前浏览器支持，在其中写代码。。。
+          var ctx = canvas.getContext('2d') // 相当于画笔, canvas是画布
+
+          var x = 0
+          // 水平背景移动
+          function backgroundMove() {
+            // 记录状态
+            ctx.save()
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            ctx.translate(-x, 0)
+            ctx.drawImage(bgImage, 0, 0)
+            ctx.drawImage(bgImage, canvas.width, 0)
+
+            // 判断x的偏移量
+            x++
+
+            if (x >= canvas.width) {
+              x = 0
+            }
+
+            ctx.restore()
+
+            window.requestAnimationFrame(backgroundMove)
+          }
+
+          var bgImage = new Image()
+
+          bgImage.onload = function () {
+            backgroundMove()
+          }
+          bgImage.src = 'image.jpeg'
+        }
+      }
+    </script>
+  </body>
+</html>
