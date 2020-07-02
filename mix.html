@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas</title>
+    <style type="text/css">
+      body, html {
+        margin: 0;
+      }
+      canvas {
+        box-shadow: 0 0 10px #333;
+      }
+    </style>
+  </head>
+  <body onload="draw()">
+    <canvas id="canvas1" width="300" height="300">
+      您的浏览器不支持Canvas，请更新！
+    </canvas>
+    <canvas id="canvas2" width="300" height="300">
+      您的浏览器不支持Canvas，请更新！
+    </canvas>
+    <canvas id="canvas3" width="300" height="300">
+      您的浏览器不支持Canvas，请更新！
+    </canvas>
+    <canvas id="canvas4" width="300" height="300">
+      您的浏览器不支持Canvas，请更新！
+    </canvas>
+    <canvas id="canvas5" width="300" height="300">
+      您的浏览器不支持Canvas，请更新！
+    </canvas>
+    <canvas id="canvas6" width="300" height="300">
+      您的浏览器不支持Canvas，请更新！
+    </canvas>
+    <canvas id="canvas7" width="300" height="300">
+      您的浏览器不支持Canvas，请更新！
+    </canvas>
+
+    <script>
+      function draw() {
+        var canvas1 = document.getElementById('canvas1')
+        if (canvas1.getContext) {
+          // 说明当前浏览器支持，在其中写代码。。。
+        var ctx1 = canvas1.getContext('2d') // 相当于画笔, canvas是画布
+
+        ctx1.beginPath()
+        ctx1.fillStyle = 'red'
+        ctx1.fillRect(50,50,100,100)
+
+        //  图片混合
+        /**
+        * 目标图像：画布已经存在的图像
+        * 源图像：即将画在画布上的图像
+        * 
+        * source-over:重叠区域，目标图像覆盖源图像
+        */
+        ctx1.globalCompositeOperation = 'source-over'
+        ctx1.fillStyle = 'green'
+        ctx1.arc(150,150,50,0,Math.PI*2)
+        ctx1.fill()
+
+        
+        /**
+        * source-atop:只显示与目标图像重叠的部分
+        */
+        var canvas2 = document.getElementById('canvas2')
+        var ctx2 = canvas2.getContext('2d') // 相当于画笔, canvas是画布
+
+        ctx2.beginPath()
+        ctx2.fillStyle = 'red'
+        ctx2.fillRect(50,50,100,100)
+
+        //  图片混合
+        ctx2.globalCompositeOperation = 'source-atop'
+        ctx2.fillStyle = 'green'
+        ctx2.arc(150,150,50,0,Math.PI*2)
+        ctx2.fill()
+
+
+        /**
+        * destination-atop:只显示与源图像重叠的部分
+        */
+        var canvas3 = document.getElementById('canvas3')
+        var ctx3 = canvas3.getContext('2d') // 相当于画笔, canvas是画布
+
+        ctx3.beginPath()
+        ctx3.fillStyle = 'red'
+        ctx3.fillRect(50,50,100,100)
+
+        //  图片混合
+        ctx3.globalCompositeOperation = 'destination-atop'
+        ctx3.fillStyle = 'green'
+        ctx3.arc(150,150,50,0,Math.PI*2)
+        ctx3.fill()
+
+
+        /**
+        * source-in:只显示与目标图像重叠的部分的源图像
+        */
+        var canvas4 = document.getElementById('canvas4')
+        var ctx4 = canvas4.getContext('2d') // 相当于画笔, canvas是画布
+
+        ctx4.beginPath()
+        ctx4.fillStyle = 'red'
+        ctx4.fillRect(50,50,100,100)
+
+        //  图片混合
+        ctx4.globalCompositeOperation = 'source-in'
+        ctx4.fillStyle = 'green'
+        ctx4.arc(150,150,50,0,Math.PI*2)
+        ctx4.fill()
+
+
+        /**
+        * destination-in:只显示与源图像重叠的部分的目标图像
+        */
+        var canvas5 = document.getElementById('canvas5')
+        var ctx5 = canvas5.getContext('2d') // 相当于画笔, canvas是画布
+
+        ctx5.beginPath()
+        ctx5.fillStyle = 'red'
+        ctx5.fillRect(50,50,100,100)
+
+        //  图片混合
+        ctx5.globalCompositeOperation = 'destination-in'
+        ctx5.fillStyle = 'green'
+        ctx5.arc(150,150,50,0,Math.PI*2)
+
+
+
+        /**
+        * source-out:重叠部分不显示，只显示不重叠的源图像
+        */
+        var canvas6 = document.getElementById('canvas6')
+        var ctx6 = canvas6.getContext('2d') // 相当于画笔, canvas是画布
+
+        ctx6.beginPath()
+        ctx6.fillStyle = 'red'
+        ctx6.fillRect(50,50,100,100)
+
+        //  图片混合
+        ctx6.globalCompositeOperation = 'source-out'
+        ctx6.fillStyle = 'green'
+        ctx6.arc(150,150,50,0,Math.PI*2)
+        ctx6.fill()
+
+
+
+        /**
+        * destination-out:重叠部分不显示，只显示不重叠的目标图像
+        */
+        var canvas7 = document.getElementById('canvas7')
+        var ctx7 = canvas7.getContext('2d') // 相当于画笔, canvas是画布
+
+        ctx7.beginPath()
+        ctx7.fillStyle = 'red'
+        ctx7.fillRect(50,50,100,100)
+
+        //  图片混合
+        ctx7.globalCompositeOperation = 'destination-out'
+        ctx7.fillStyle = 'green'
+        ctx7.arc(150,150,50,0,Math.PI*2)
+        ctx7.fill()
+        }
+      }
+    </script>
+  </body>
+</html>
