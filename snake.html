@@ -49,6 +49,8 @@
 
           var isEatFood = false
 
+          var timer
+
           function Rect(x, y, width, height, color) {
             this.x = x
             this.y = y
@@ -145,6 +147,27 @@
               case 3: {
                 this.head.y += this.head.height
                 break
+              }
+            }
+
+            // 判断是否撞墙
+            if (
+              this.head.x >= canvas.width ||
+              this.head.x < 0 ||
+              this.head.y >= canvas.height ||
+              this.head.y < 0
+            ) {
+              clearInterval(timer)
+              timer = null
+              alert('游戏结束')
+            }
+
+            // 判断蛇头和蛇身是否重叠
+            for (var i = 0; i < this.body.length; i++) {
+              if (isRectHit(this.head, this.body[i])) {
+                clearInterval(timer)
+                timer = null
+                alert('游戏结束')
               }
             }
           }
