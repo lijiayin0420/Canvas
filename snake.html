@@ -152,13 +152,21 @@
           var snake = new Snake()
           snake.draw()
 
+          var food = randForFood()
+
           function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height)
+            food.rDraw()
             snake.move()
             snake.draw()
+
+            if (isRectHit(snake.head, food)) {
+              isEatFood = true
+              food = randForFood()
+            }
           }
 
-          setInterval(animate, 200)
+          timer = setInterval(animate, 200)
 
           document.onkeydown = function (event) {
             var event = event || window.event
@@ -184,6 +192,67 @@
                 break
               }
             }
+          }
+
+          function randForFood() {
+            var isInSnake = true
+            while (isInSnake) {
+              // x，y：随机投放的位置
+              var x = getRandInRange(0, (canvas.width - 40) / 40) * 40
+              var y = getRandInRange(0, (canvas.height - 40) / 40) * 40
+
+              // 食物矩形
+              var rect = new Rect(x, y, 40, 40, 'blue')
+
+              // 判断食物是否与蛇头重叠
+              if (isRectHit(snake.head, rect)) {
+                isInSnake = true
+                continue
+              }
+
+              isInSnake = false
+
+              // 判断食物是否与蛇身重叠
+              for (var i = 0; i < snake.body.length; i++) {
+                if (isRectHit(snake.body[i], rect)) {
+                  isInSnake = true
+                  break
+                }
+              }
+            }
+            return rect
+          }
+
+          function isRectHit(rect1, rect2) {
+            var minX1 = rect1.x
+            var minX2 = rect2.x
+
+            var minY1 = rect1.y
+            var minY2 = rect2.y
+
+            var maxX1 = rect1.x + rect1.width
+            var maxX2 = rect2.x + rect2.width
+
+            var maxY1 = rect1.y + rect1.height
+            var maxY2 = rect2.y + rect2.height
+
+            // 判断矩形相交的最大/最小值
+            var minX = Math.max(minX1, minX2)
+            var minY = Math.max(minY1, minY2)
+
+            var maxX = Math.min(maxX1, maxX2)
+            var maxY = Math.min(maxY1, maxY2)
+
+            if (minX < maxX && minY < maxY) {
+              return true
+            } else {
+              return false
+            }
+          }
+
+          // 获取随机数的方法
+          function getRandInRange(min, max) {
+            return Math.round(Math.random() * (max - min)) + min
           }
         }
       }
