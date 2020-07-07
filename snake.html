@@ -47,6 +47,8 @@
            *     5.2 Game Over
            */
 
+          var isEatFood = false
+
           function Rect(x, y, width, height, color) {
             this.x = x
             this.y = y
@@ -55,7 +57,7 @@
             this.color = color
           }
 
-          Rect.prototype.draw = function () {
+          Rect.prototype.rDraw = function () {
             ctx.beginPath()
             ctx.fillStyle = this.color
             ctx.fillRect(this.x, this.y, this.width, this.height)
@@ -69,7 +71,7 @@
           //     40,
           //     'red',
           //   )
-          //   rect.draw()
+          //   rect.rDraw()
 
           //      创建snake对象
           function Snake() {
@@ -93,20 +95,96 @@
               this.body.push(rect)
               x -= 40
             }
+
+            // 给个默认的方向：向右
+            this.direction = 2
           }
 
           Snake.prototype.draw = function () {
             //  绘制蛇头
-            this.head.draw()
+            this.head.rDraw()
 
             // 绘制蛇身
             for (var i = 0; i < this.body.length; i++) {
-              this.body[i].draw()
+              this.body[i].rDraw()
+            }
+          }
+
+          Snake.prototype.move = function () {
+            //   加头
+            var rect = new Rect(
+              this.head.x,
+              this.head.y,
+              this.head.width,
+              this.head.height,
+              'gray',
+            )
+
+            this.body.splice(0, 0, rect)
+
+            // 去尾
+            // 如果没吃到食物，那么去掉一个尾部
+            if (isEatFood == false) {
+              this.body.pop()
+            } else {
+              isEatFood = false
+            }
+            switch (this.direction) {
+              case 0: {
+                this.head.x -= this.head.width
+                break
+              }
+              case 1: {
+                this.head.y -= this.head.height
+                break
+              }
+              case 2: {
+                this.head.x += this.head.width
+                break
+              }
+              case 3: {
+                this.head.y += this.head.height
+                break
+              }
             }
           }
 
           var snake = new Snake()
           snake.draw()
+
+          function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            snake.move()
+            snake.draw()
+          }
+
+          setInterval(animate, 200)
+
+          document.onkeydown = function (event) {
+            var event = event || window.event
+            switch (event.keyCode) {
+              // 向左
+              case 37: {
+                snake.direction = 0
+                break
+              }
+              // 向上
+              case 38: {
+                snake.direction = 1
+                break
+              }
+              // 向右
+              case 39: {
+                snake.direction = 2
+                break
+              }
+              // 向下
+              case 40: {
+                snake.direction = 3
+                break
+              }
+            }
+          }
         }
       }
     </script>
