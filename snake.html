@@ -30,22 +30,46 @@
           var ctx = canvas.getContext('2d') // 相当于画笔, canvas是画布
 
           /**
-          * 贪吃蛇步骤：
-          * 1. 画蛇
-          *     1.1 蛇头和蛇身
-          * 2.  让蛇动起来
-          *     2.1 添加键盘时间
-          *     2.2 animate运动
-          * 3. 随机投放食物
-          *     3.1 坐标位置
-          *     3.2 食物是否投放在蛇头和蛇身上（数组排重）
-          * 4. 吃食物
-          *     4.1 碰撞检测
-          *     4.2 将食物添加在蛇身上
-          * 5. 边缘检测，判断游戏是否结束
-          *     5.1 碰撞检测
-          *     5.2 Game Over
-          */
+           * 贪吃蛇步骤：
+           * 1. 画蛇
+           *     1.1 蛇头和蛇身
+           * 2.  让蛇动起来
+           *     2.1 添加键盘时间
+           *     2.2 animate运动
+           * 3. 随机投放食物
+           *     3.1 坐标位置
+           *     3.2 食物是否投放在蛇头和蛇身上（数组排重）
+           * 4. 吃食物
+           *     4.1 碰撞检测
+           *     4.2 将食物添加在蛇身上
+           * 5. 边缘检测，判断游戏是否结束
+           *     5.1 碰撞检测
+           *     5.2 Game Over
+           */
+
+          function Rect(x, y, width, height, color) {
+            this.x = x
+            this.y = y
+            this.width = width
+            this.height = height
+            this.color = color
+          }
+
+          Rect.prototype.draw = function () {
+            ctx.beginPath()
+            ctx.fillStyle = this.color
+            ctx.fillRect(this.x, this.y, this.width, this.height)
+            ctx.strokeRect(this.x, this.y, this.width, this.height)
+          }
+
+          var rect = new Rect(
+            canvas.width / 2 - 40,
+            canvas.height / 2 - 40 / 2,
+            40,
+            40,
+            'red',
+          )
+          rect.draw()
         }
       }
     </script>
