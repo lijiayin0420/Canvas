@@ -62,14 +62,51 @@
             ctx.strokeRect(this.x, this.y, this.width, this.height)
           }
 
-          var rect = new Rect(
-            canvas.width / 2 - 40,
-            canvas.height / 2 - 40 / 2,
-            40,
-            40,
-            'red',
-          )
-          rect.draw()
+          //   var rect = new Rect(
+          //     canvas.width / 2 - 40,
+          //     canvas.height / 2 - 40 / 2,
+          //     40,
+          //     40,
+          //     'red',
+          //   )
+          //   rect.draw()
+
+          //      创建snake对象
+          function Snake() {
+            // 画蛇头
+            this.head = new Rect(
+              canvas.width / 2 - 40,
+              canvas.height / 2 - 40 / 2,
+              40,
+              40,
+              'red',
+            )
+
+            // 画蛇身
+            this.body = new Array()
+
+            var x = this.head.x - 40
+            var y = this.head.y
+
+            for (var i = 0; i < 3; i++) {
+              var rect = new Rect(x, y, 40, 40, 'gray')
+              this.body.push(rect)
+              x -= 40
+            }
+          }
+
+          Snake.prototype.draw = function () {
+            //  绘制蛇头
+            this.head.draw()
+
+            // 绘制蛇身
+            for (var i = 0; i < this.body.length; i++) {
+              this.body[i].draw()
+            }
+          }
+
+          var snake = new Snake()
+          snake.draw()
         }
       }
     </script>
