@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas</title>
+    <style type="text/css">
+      * {
+        margin: 0;
+      }
+      canvas {
+        box-shadow: 0 0 40px #333;
+      }
+    </style>
+  </head>
+  <body onload="drawAirplane()">
+    <canvas id="canvas" width="320" height="568">
+      您的浏览器不支持Canvas，请更新！
+    </canvas>
+  </body>
+
+  <script src="background.js"></script>
+  <script>
+    function drawAirplane() {
+      var bgCanvas = document.getElementById('canvas')
+      if (bgCanvas.getContext) {
+
+        var bgURL = 'bg.jpg'
+        //   1. 加载图片的方法
+        loadBackground(bgURL,bgCanvas,moveBackground)
+
+        function moveBackground(bgImage) {
+            // var bgSound = new Audio('audio/game_music.mp3')
+            // bgSound.loop = true
+            // bgSound.play()
+
+            setInterval(function() {
+                var speed = 5
+                animateBackground(bgCanvas,bgImage,speed)
+            },30)
+        }
+      }
+    }
+  </script>
+</html>
