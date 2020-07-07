@@ -11,10 +11,16 @@
       canvas {
         box-shadow: 0 0 40px #333;
       }
+      #heroCanvas{
+          position: absolute;
+          left: 0;
+          top: 0;
+      }
     </style>
   </head>
   <body onload="drawAirplane()">
     <canvas id="canvas" width="320" height="568">
+    <canvas id="heroCanvas" width="320" height="568">
       您的浏览器不支持Canvas，请更新！
     </canvas>
   </body>
@@ -38,6 +44,11 @@
                 var speed = 5
                 animateBackground(bgCanvas,bgImage,speed)
             },30)
+
+            // 主角出场
+        var heroCanvas = document.getElementById('heroCanvas')
+        
+
         }
       }
     }
